@@ -1,0 +1,28 @@
+# local package
+-e .
+
+# Data & Modeling
+pandas
+openpyxl
+sklearn
+
+# Visualization
+plotly
+seaborn
+graphviz
+ipython
+ipywidgets
+ipykernel
+tqdm
+kaleido
+nbformat>=4.2.0
+
+# Env & Dc
+python-dotenv>=0.5.1
+pyodbc==4.0.32
+setuptools
+
+### Detalhe para graphviz
+### link:https://stackoverflow.com/questions/35064304/runtimeerror-make-sure-the-graphviz-executables-are-on-your-systems-path-aft
+### instalar graphviz usando o comando conda no seu ambiente se o SO for Windows.
+### conda install graphviz e conda install pyython-graphviz

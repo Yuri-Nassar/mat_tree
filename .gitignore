@@ -1,0 +1,16 @@
+# Folders log
+mat_tree.egg-info
+mat_tree.egg-info
+.vscode
+classes/__py*
+pages/__py*
+
+# Folder data
+dataset
+dataset.zip
+
+# HTML Files 
+src/*.html
+
+# Other files
+links_for_articles_literature.txt
