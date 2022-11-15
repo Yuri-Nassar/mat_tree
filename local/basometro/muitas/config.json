@@ -1,0 +1,176 @@
+{
+  "experiment_name": "My Experiment",
+  "tid_col": "tid",
+  "label_col": "label",
+  "features_analysis": [
+    {
+      "features": [
+        "UF",
+        "voto",
+        "orientacaoGoverno",
+        "anoProposicao",
+        "anoVotacao",
+        "tipoProposicao",
+        "governo",
+        "parlamentar",
+        "data",
+        "idVotacao",
+        "horaVotacao",
+        "diaDaSemanaVotacao",
+        "diaDaSemanaVotacaoNome",
+        "diaDoAno",
+        "diaDoMesVotacao",
+        "mesVotacao",
+        "delayVotacaoAnos",
+        "alinhamento"
+      ],
+      "weight": 1.0
+    }
+  ],
+  "features": {
+    "UF": {
+      "type": "STRING",
+      "distance_function": "x != y",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "voto": {
+      "type": "STRING",
+      "distance_function": "x != y",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "orientacaoGoverno": {
+      "type": "STRING",
+      "distance_function": "x != y",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "anoProposicao": {
+      "type": "INTEGER",
+      "distance_function": "abs(x - y)",
+      "weight": 1,
+      "threshold": [
+        1.0
+      ]
+    },
+    "anoVotacao": {
+      "type": "INTEGER",
+      "distance_function": "abs(x - y)",
+      "weight": 1,
+      "threshold": [
+        1.0
+      ]
+    },
+    "tipoProposicao": {
+      "type": "STRING",
+      "distance_function": "x != y",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "governo": {
+      "type": "STRING",
+      "distance_function": "x != y",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "parlamentar": {
+      "type": "STRING",
+      "distance_function": "x != y",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "data": {
+      "type": "STRING",
+      "distance_function": "x != y",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "idVotacao": {
+      "type": "STRING",
+      "distance_function": "x != y",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "horaVotacao": {
+      "type": "INTEGER",
+      "distance_function": "abs(x - y)",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "diaDaSemanaVotacao": {
+      "type": "INTEGER",
+      "distance_function": "abs(x - y)",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "diaDaSemanaVotacaoNome": {
+      "type": "STRING",
+      "distance_function": "x != y",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "diaDoAno": {
+      "type": "INTEGER",
+      "distance_function": "abs(x - y)",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "diaDoMesVotacao": {
+      "type": "INTEGER",
+      "distance_function": "abs(x - y)",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "mesVotacao": {
+      "type": "INTEGER",
+      "distance_function": "abs(x - y)",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "delayVotacaoAnos": {
+      "type": "INTEGER",
+      "distance_function": "abs(x - y)",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    },
+    "alinhamento": {
+      "type": "STRING",
+      "distance_function": "x != y",
+      "weight": 1,
+      "threshold": [
+        0.0
+      ]
+    }
+  }
+}
