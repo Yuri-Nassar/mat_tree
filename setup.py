@@ -5,6 +5,6 @@ setup(
     packages=find_packages(),
     version='0.1.0',
     description='Projeto para o desenvolvimento de algoritmo para trajetórias multiaspectos com base em árvores.',
-    author='Yuri Santos, Ricardo e Jhonata Tyska',
+    author='Yuri Santos, Ricardo, Gabriel Saldanha e Jônata Tyska',
     license='MIT',
 )
