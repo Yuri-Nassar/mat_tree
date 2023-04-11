@@ -2,12 +2,13 @@
 -e .
 
 # Data & Modeling
-pandas
+pandas==1.5
+numpy==1.24
 openpyxl
-sklearn
+scikit-learn
 
 # Visualization
-plotly
+plotly==5.14
 seaborn
 graphviz
 ipython
