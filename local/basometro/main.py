@@ -17,7 +17,7 @@ dashtree(self, df)
 
 generate_graphic_tree(self, 'path')
 
-# dataset_exploration(5, df)
+#dataset_exploration(5, df)
 
-# Silhouette score e os índices
-# de Calinski-Harabasz e Davies-Bouldin
+## Silhouette score e os índices
+## de Calinski-Harabasz e Davies-Bouldin

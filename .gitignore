@@ -4,9 +4,10 @@ mat_tree.egg-info
 .vscode
 classes/__py*
 pages/__py*
+*/__pycache__/*
 
 # Folder data
-dataset
+#dataset
 dataset.zip
 
 # HTML Files 
