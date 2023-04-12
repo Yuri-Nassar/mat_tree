@@ -8,7 +8,7 @@ from scripts.metrics_evaluation.freq_matrix import generate_freq_matrix
 from scripts.metrics_evaluation.similarity_matrix import get_similarity_matrix
 
 
-def dashtree(self, df):
+def dashtree(self, df, exclude_aspects=None):
     """
       Method that calculates the frequency matrix and the clusters generated
       from the division of data based on a split criteria defined in the
@@ -18,7 +18,7 @@ def dashtree(self, df):
     # dummies = pd.get_dummies(columns, prefix_sep='~')
     # vals = dummies.drop(['tid'], axis=1)
     # self.freqMatrix = pd.pivot_table(dummies, index=['tid'], values=vals.columns, aggfunc=np.sum)
-    generate_freq_matrix(self)
+    generate_freq_matrix(self,exclude_aspects)
 
     if self.relative and self.absolute_frequency_matrix is None:
         self.absolute_frequency_matrix = self.freqMatrix.sum()
