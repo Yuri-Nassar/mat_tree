@@ -17,6 +17,7 @@ df = get_dataset('fsny_10')
 ###       exclude_aspects = ['data', 'idVotacao', 'parlamentar'] # exclude aspects for basometro
 exclude_aspects = ['day', 'weather', 'root_type']
 
+print("Iniciando MAT-Tree")
 self = TreeNodeObject(df=df)
 # # eda_dashboard('ALL', df, self)
 dashtree(self, df, exclude_aspects)

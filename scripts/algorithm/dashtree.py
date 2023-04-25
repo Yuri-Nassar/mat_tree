@@ -33,6 +33,7 @@ def dashtree(self, df, exclude_aspects=None):
         check_label(self, 'c', self.depth)
         self.df_dict[str(self.id)] = self.freqMatrix
         self.nodeLabel[self.depth].append(self.id)
+        print(f"self.done: {self.done}; self.parentName: {self.parentName}; nodeLabel: [self.depth={self.depth}.append(self.id={self.id})]")#degub
 
         idx = self.df_dict[str(self.id)].index
         df_filter = df[df.tid.isin(idx)]
@@ -180,6 +181,7 @@ def dashtree(self, df, exclude_aspects=None):
         self.division = max(split_value, key=split_value.get)
 
     asp, val = self.division.split('~')
+    print(f"asp: {asp}; val: {val}")#degub
     self.thresholdVal = self.threshold['mean'][self.division]
     check_label(self, f'{asp} {val}', self.depth)
 
@@ -188,21 +190,24 @@ def dashtree(self, df, exclude_aspects=None):
 
     self.value[self.depth].extend([len(self.left_group[self.division]), len(self.right_group[self.division])])
     self.nodeLabel[self.depth].append(self.id)
+    print(f"nodeLabel: [self.depth={self.depth}].append(self.id={self.id})")#degub
     self.df_dict[str(self.id)] = self.freqMatrix
 
     self.parentName = asp + "\n[" + val + "]"
+    print(f"parentName: {self.parentName}")#degub
 
+    print("chamar func para nó da ESQUERDA")#degub
     traj_left = [t for i, t in enumerate(self.freqMatrix.index.values) if i in left_dict[self.division]]
-
     self.left = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_left)], self)
     dashtree(self.left, df)
     # self.left.dashTree()
     self.leftChildName = self.left.parentName
+    print(f"leftChildName: {self.leftChildName}; left.id: {self.left.id}")#degub
 
     self.dendrogram_dict[str(self.id)].append(self.left.id)
 
+    print("chamar func para nó da DIREITA")#degub
     traj_right = [t for i, t in enumerate(self.freqMatrix.index.values) if i in right_dict[self.division]]
-
     self.right = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_right)], self)
     dashtree(self.right, df)
     # self.left.dashTree()

@@ -1,13 +1,17 @@
 # Folders log
 mat_tree.egg-info
-mat_tree.egg-info
 .vscode
 classes/__py*
 pages/__py*
-*/__pycache__/*
+scripts/__py*
+*.pyc
+scripts/algorithm/__pycache__/TreeNodeObject.cpython-39.pyc
+scripts/algorithm/__pycache__/dashtree.cpython-39.pyc
+scripts/metrics_evaluation/__pycache__/freq_matrix.cpython-39.pyc
 
 # Folder data
 #dataset
+dataset/basometro/*
 dataset.zip
 
 # HTML Files 
