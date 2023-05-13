@@ -96,11 +96,11 @@ class TreeNodeObject:
         self.division = ''
         self.thresholdVal = None
         self.maxTrajPerGroup = 50
-        self.maxDepth = 1
+        self.maxDepth = 3
 
         if par == None:
             # binary, minVariance, var_red, max_red
-            self.split = 'var_red'
+            self.split = 'max_red'
         else:
             self.split = par.split
 

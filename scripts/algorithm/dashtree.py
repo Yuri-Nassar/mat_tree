@@ -18,16 +18,23 @@ def dashtree(self, df, exclude_aspects=None):
     # dummies = pd.get_dummies(columns, prefix_sep='~')
     # vals = dummies.drop(['tid'], axis=1)
     # self.freqMatrix = pd.pivot_table(dummies, index=['tid'], values=vals.columns, aggfunc=np.sum)
+    
+    print("Computing frequency matrix...", end="")
     generate_freq_matrix(self,exclude_aspects)
+    print("DONE!")
 
+    print("Computing absolute freq matrix...", end="")
     if self.relative and self.absolute_frequency_matrix is None:
         self.absolute_frequency_matrix = self.freqMatrix.sum()
         dt = [res for res in self.freqMatrix.mean()]
         self.absolute_frequency_matrix = pd.DataFrame(columns=['mean'], data=dt, index=self.freqMatrix.columns)
+    print("DONE")
 
     # Condição de parada
     if (self.trajList.size <= 1 or (self.maxTrajPerGroup > 0 and self.trajList.size < self.maxTrajPerGroup) or
             (0 < self.maxDepth <= self.depth)):
+        
+        print("Stop criteria matched.")
         self.parentName = str(self.data.tid.unique().size)
         self.done = 'Yes'
         check_label(self, 'c', self.depth)
@@ -51,12 +58,14 @@ def dashtree(self, df, exclude_aspects=None):
 
     minVar = -1
 
+    print("Computing aspects threshold...", end="")
     if self.relative:
         dt = [res for res in self.freqMatrix.sum() / len(df)]
         self.threshold = pd.DataFrame(columns=['mean'], data=dt, index=self.freqMatrix.columns)
     else:
         dt = [res for res in self.freqMatrix.mean()]
         self.threshold = pd.DataFrame(columns=['mean'], data=dt, index=self.freqMatrix.columns)
+    print("DONE!")
 
     self.variance = {}
     left_dict = {}
@@ -67,6 +76,10 @@ def dashtree(self, df, exclude_aspects=None):
     muitas_result = {}
     msm_result = {}
 
+    print(f"Starting trajectory split on branches (split method: {self.split}). It will do:")
+    print("\tCheck trajs for left and right branches regarding the AVG.")
+    print("\tCompute variance for each aspect and branch.")
+    print("\tRunning...", end="")
     for col in self.freqMatrix.columns:
 
         if col in self.skipVal:
@@ -88,13 +101,16 @@ def dashtree(self, df, exclude_aspects=None):
         left_dict[col] = left_idx
         right_dict[col] = right_idx
 
+        # print("Delay on var() part 1:", end="")#debug
         self.variance[col] = {
             "initial": self.freqMatrix[col].var(),
             "left": np.var(left),
             "right": np.var(right)
         }
+        # print(f"DONE!")#debug
 
         if self.split == 'var_red':
+            print("Delay on var() part 2:", end="")
 
             save_df = self.freqMatrix.copy()
             save_df.reset_index(drop=True, inplace=True)
@@ -106,6 +122,7 @@ def dashtree(self, df, exclude_aspects=None):
                 variance_reduction = initial_variance - abs((np.var(esquerda[c]) - np.var(direita[c])) / 2)
                 reducao[c] = variance_reduction
             split_value[col] = sum(reducao.values()) / len(self.freqMatrix.columns)
+            print(f"DONE!")
 
         elif self.split == 'muitas':
 
@@ -172,6 +189,7 @@ def dashtree(self, df, exclude_aspects=None):
             if calcMinVar > minVar:
                 minVar = calcMinVar
                 self.division = col
+    print("ALL DONE!")
 
     if self.split == 'muitas':
         self.division = max(muitas_result, key=muitas_result.get)
@@ -180,6 +198,7 @@ def dashtree(self, df, exclude_aspects=None):
     elif self.split == 'var_red':
         self.division = max(split_value, key=split_value.get)
 
+    print(f"self.division: {self.division}")#debug
     asp, val = self.division.split('~')
     print(f"asp: {asp}; val: {val}")#degub
     self.thresholdVal = self.threshold['mean'][self.division]
@@ -196,7 +215,7 @@ def dashtree(self, df, exclude_aspects=None):
     self.parentName = asp + "\n[" + val + "]"
     print(f"parentName: {self.parentName}")#degub
 
-    print("chamar func para nó da ESQUERDA")#degub
+    print("\nChamar func para nó da ESQUERDA")#degub
     traj_left = [t for i, t in enumerate(self.freqMatrix.index.values) if i in left_dict[self.division]]
     self.left = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_left)], self)
     dashtree(self.left, df)
@@ -206,11 +225,12 @@ def dashtree(self, df, exclude_aspects=None):
 
     self.dendrogram_dict[str(self.id)].append(self.left.id)
 
-    print("chamar func para nó da DIREITA")#degub
+    print("\nChamar func para nó da DIREITA")#degub
     traj_right = [t for i, t in enumerate(self.freqMatrix.index.values) if i in right_dict[self.division]]
     self.right = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_right)], self)
     dashtree(self.right, df)
     # self.left.dashTree()
     self.rightChildName = self.right.parentName
+    print(f"leftChildName: {self.rightChildName}; left.id: {self.right.id}")#degub
 
     self.dendrogram_dict[str(self.id)].append(self.right.id)
