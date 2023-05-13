@@ -19,8 +19,9 @@ def generate_freq_matrix(self, exclude_aspects=None):
     # vals = dummies.drop(['tid'], axis=1)
 
     if isinstance(exclude_aspects, type(None)):    
-        dummies = pd.get_dummies(self.data, prefix_sep='~')
+        dummies = pd.get_dummies(self.data.drop(['label'], axis=1), prefix_sep='~')
     else:
+        exclude_aspects.append('label')
         dummies = pd.get_dummies(self.data.drop(exclude_aspects, axis=1), prefix_sep='~')
 
     self.freqMatrix = pd.pivot_table(dummies, index=['tid'],
