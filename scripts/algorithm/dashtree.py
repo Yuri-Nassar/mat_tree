@@ -231,6 +231,6 @@ def dashtree(self, df, exclude_aspects=None):
     dashtree(self.right, df)
     # self.left.dashTree()
     self.rightChildName = self.right.parentName
-    print(f"leftChildName: {self.rightChildName}; left.id: {self.right.id}")#degub
+    print(f"rightChildName: {self.rightChildName}; right.id: {self.right.id}")#degub
 
     self.dendrogram_dict[str(self.id)].append(self.right.id)

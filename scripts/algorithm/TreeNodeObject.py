@@ -100,7 +100,7 @@ class TreeNodeObject:
 
         if par == None:
             # binary, minVariance, var_red, max_red
-            self.split = 'max_red'
+            self.split = 'binary'
         else:
             self.split = par.split
 
