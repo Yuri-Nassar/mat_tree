@@ -76,7 +76,7 @@ class TreeNodeObject:
 
     temp = {}
 
-    def __init__(self, df, par=None):
+    def __init__(self, df, par=None, split='var_red', max_traj_per_group=50, max_depth=8):
         """DOC - __init__"""
 
         self.parent = par
@@ -95,12 +95,12 @@ class TreeNodeObject:
 
         self.division = ''
         self.thresholdVal = None
-        self.maxTrajPerGroup = 50
-        self.maxDepth = 8
+        self.maxTrajPerGroup = max_traj_per_group
+        self.maxDepth = max_depth
 
-        if par == None:
+        if par is None:
             # binary, minVariance, var_red, max_red
-            self.split = 'var_red'
+            self.split = split
         else:
             self.split = par.split
 
