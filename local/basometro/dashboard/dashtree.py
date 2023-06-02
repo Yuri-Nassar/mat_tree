@@ -194,7 +194,7 @@ def dashtree(self, df):
 
     traj_left = [t for i, t in enumerate(self.freqMatrix.index.values) if i in left_dict[self.division]]
 
-    self.left = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_left)], self)
+    self.left = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_left)], self, split=self.split, max_traj_per_group=self.maxTrajPerGroup, max_depth=self.maxDepth)
     dashtree(self.left, df)
     # self.left.dashTree()
     self.leftChildName = self.left.parentName
@@ -203,7 +203,7 @@ def dashtree(self, df):
 
     traj_right = [t for i, t in enumerate(self.freqMatrix.index.values) if i in right_dict[self.division]]
 
-    self.right = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_right)], self)
+    self.right = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_right)], self, split=self.split, max_traj_per_group=self.maxTrajPerGroup, max_depth=self.maxDepth)
     dashtree(self.right, df)
     # self.left.dashTree()
     self.rightChildName = self.right.parentName
