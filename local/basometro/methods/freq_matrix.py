@@ -2,10 +2,8 @@ import numpy as np
 import pandas as pd
 
 
-def generate_freq_matrix(self):
-    # weather_ = ['label']
-    weather_ = ['data', 'idVotacao', 'parlamentar']
-    columns = self.data.drop(weather_, axis=1)
+def generate_freq_matrix(self, out_aspects):
+    columns = self.data.drop(out_aspects, axis=1)
 
     dummies = pd.get_dummies(columns, prefix_sep='~')
     vals = dummies.drop(['tid'], axis=1)
