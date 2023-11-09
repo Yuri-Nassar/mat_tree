@@ -73,7 +73,7 @@ def graphic_tree(self, graphTree):
 
 
 def generate_graphic_tree(self, dir_path):
-    tree = 'Clustering-Tree-{}nodes-{}-{}'.format(self.maxDepth, datetime.now().strftime("%d-%m-%Y-%H-%M-%S"), self.split)
+    tree = 'Clustering-Tree-{}Levels-{}-{}'.format(self.maxDepth, datetime.now().strftime("%d-%m-%Y-%H-%M-%S"), self.split)
     graph = Digraph(tree, comment='Arvore de clusters')
     graph.attr(size="22")
     graph.attr()

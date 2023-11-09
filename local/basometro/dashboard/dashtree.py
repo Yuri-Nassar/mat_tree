@@ -8,7 +8,7 @@ from local.basometro.methods.freq_matrix import generate_freq_matrix
 from local.basometro.methods.similarity_matrix import get_similarity_matrix
 
 
-def dashtree(self, df):
+def dashtree(self, df, out_aspects):
     """
       Method that calculates the frequency matrix and the clusters generated
       from the division of data based on a split criteria defined in the
@@ -18,7 +18,7 @@ def dashtree(self, df):
     # dummies = pd.get_dummies(columns, prefix_sep='~')
     # vals = dummies.drop(['tid'], axis=1)
     # self.freqMatrix = pd.pivot_table(dummies, index=['tid'], values=vals.columns, aggfunc=np.sum)
-    generate_freq_matrix(self)
+    generate_freq_matrix(self, out_aspects)
 
     if self.relative and self.absolute_frequency_matrix is None:
         self.absolute_frequency_matrix = self.freqMatrix.sum()
@@ -194,8 +194,8 @@ def dashtree(self, df):
 
     traj_left = [t for i, t in enumerate(self.freqMatrix.index.values) if i in left_dict[self.division]]
 
-    self.left = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_left)], self)
-    dashtree(self.left, df)
+    self.left = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_left)], self, split=self.split, max_traj_per_group=self.maxTrajPerGroup, max_depth=self.maxDepth)
+    dashtree(self.left, df, out_aspects)
     # self.left.dashTree()
     self.leftChildName = self.left.parentName
 
@@ -203,8 +203,8 @@ def dashtree(self, df):
 
     traj_right = [t for i, t in enumerate(self.freqMatrix.index.values) if i in right_dict[self.division]]
 
-    self.right = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_right)], self)
-    dashtree(self.right, df)
+    self.right = TreeNodeObject(self.data.loc[self.data['tid'].isin(traj_right)], self, split=self.split, max_traj_per_group=self.maxTrajPerGroup, max_depth=self.maxDepth)
+    dashtree(self.right, df, out_aspects)
     # self.left.dashTree()
     self.rightChildName = self.right.parentName
 
