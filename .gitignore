@@ -11,7 +11,7 @@ scripts/metrics_evaluation/__pycache__/freq_matrix.cpython-39.pyc
 
 # Folder data
 #dataset
-dataset/basometro/*
+datasets/basometro/*
 dataset.zip
 
 # HTML Files 
