@@ -8,7 +8,7 @@ dtypes = {'UF':'string', 'voto':'category', 'orientacaoGoverno':'category', 'ano
           'anoVotacao':'int32', 'tipoProposicao':'category', 'governo':'category', 'parlamentar':'string',
         #   'data':'datetime64[ns]',
            'idVotacao':'string', 'tid':'int64', 'label':'category', 'horaVotacao':'int32', 'diaDaSemanaVotacao':'int32', 'diaDaSemanaVotacaoNome':'category', 'diaDoAno':'int32', 'diaDoMesVotacao':'int32', 'mesVotacao': 'int32', 'delayVotacaoAnos':'int32', 'alinhamento':'category'}
-dataset_path = "datasets/basometro/basometro.csv"
+dataset_path = "../datasets/basometro/basometro.csv"
 basometro_df = pd.read_csv(dataset_path, encoding='latin-1', dtype=dtypes, parse_dates=['data'])
 
 aspects = ['UF','governo','orientacaoGoverno','tipoProposicao','label','diaDaSemanaVotacaoNome','alinhamento',
